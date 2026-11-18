@@ -1,0 +1,7 @@
+
+<div class="alert"[class]=" 'alert-' + notificationService.lastNotification()?.level || ''">
+    <h2>{{ notificationService.lastNotification()?.title }}</h2>
+    <p>{{ notificationService.lastNotification()?.message }}</p>
+    <em>{{ notificationService.lastNotification()?.createdAt }}</em>
+</div>
+ 

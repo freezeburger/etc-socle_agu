@@ -1,0 +1,12 @@
+<ul class="list-group">
+
+    @for(recipe of recipeApi.recipes(); track recipe.id){
+    <li class="list-group-item d-flex gap-2" routerLink="/recipes/{{ recipe.id }}">
+        <img src="{{ recipe.image }}" class="rounded-pill" width="100" height="100">
+        <div class="d-flex flex-column">
+            <strong>{{ recipe.name }}</strong>
+            <code>{{ recipe.prepTimeMinutes }} min</code>
+        </div>
+    </li>
+    }
+</ul>
