@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { User } from './pages/user/user';
+// import { User } from './pages/user/user';
 import { Home } from './pages/home/home';
 import { NotFound } from './pages/not-found/not-found';
-import { Products } from './pages/products/products';
-import { ProductDetail } from './pages/product-detail/product-detail';
-import { UserDetail } from './pages/user-detail/user-detail';
-import { RecipesPage } from './pages/recipes/recipes.page';
-import { RecipeDetailPage } from './pages/recipe-detail/recipe-detail.page';
+//import { Products } from './pages/products/products';
+//import { ProductDetail } from './pages/product-detail/product-detail';
+//import { UserDetail } from './pages/user-detail/user-detail';
+//import { RecipesPage } from './pages/recipes/recipes.page';
+//import { RecipeDetailPage } from './pages/recipe-detail/recipe-detail.page';
 
 /**
  * Application routes for the Etnic Users app
@@ -16,31 +16,44 @@ import { RecipeDetailPage } from './pages/recipe-detail/recipe-detail.page';
 export const routes: Routes = [
     {
         path: '',
-        component: Home
+        component: Home,
+        title: 'ETNIC: Welcome'
     },
     {
         path: 'users',
-        component: User
+        // component: User
+        loadComponent: () => import('./pages/user/user').then(m => m.User),
+        title: 'ETNIC: Users List'
     },
     {
         path: 'recipes',
-        component: RecipesPage
+        // component: RecipesPage
+        loadComponent: () => import('./pages/recipes/recipes.page').then(m => m.RecipesPage),
+        title: 'ETNIC: Recipes List'
     },
     {
         path: 'recipes/:id',
-        component: RecipeDetailPage
+        // component: RecipeDetailPage
+        loadComponent: () => import('./pages/recipe-detail/recipe-detail.page').then(m => m.RecipeDetailPage),
+        title: 'ETNIC: Recipe Detail'
     },
     {
         path: 'products',
-        component: Products
+        // component: Products
+        loadComponent: () => import('./pages/products/products').then(m => m.Products),
+        title: 'ETNIC: Products List'
     },
     {
         path: 'products/:id',
-        component: ProductDetail
+        // component: ProductDetail
+        loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail),
+        title: 'ETNIC: Product Detail'
     },
     {
         path: 'users/:id',
-        component: UserDetail
+        // component: UserDetail
+        loadComponent: () => import('./pages/user-detail/user-detail').then(m => m.UserDetail),
+        title: 'ETNIC: User Detail'
     },
     {
         path: 'porducts',
