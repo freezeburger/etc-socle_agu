@@ -11,4 +11,5 @@ export type ButtonLevel = 'primary' | 'secondary' | 'danger';
 export class ButtonUi {
   level = input<ButtonLevel>('primary');
   disabled = input<boolean>(false);
+  loading = input<boolean>(false);
 }

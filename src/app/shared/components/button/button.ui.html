@@ -1,6 +1,9 @@
 <button 
     class="btn btn-{{level()}} m-1"
     [disabled]="disabled()">
-    <div class="spinner-border"></div>
+
+    @if( loading() ){
+        <div class="spinner-border"></div>
+    }
     <ng-content></ng-content>
 </button>
