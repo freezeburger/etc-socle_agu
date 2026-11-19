@@ -1,5 +1,21 @@
 <ul class="list-group">
 
+    <app-button>
+        Click to refresh.
+    </app-button>
+
+    <app-button 
+        [level]=" 'danger' "
+        [disabled]="true">
+        Click to refresh.
+    </app-button>
+
+    <app-button level="secondary">
+        Click to refresh.
+    </app-button>
+
+    <hr>
+
     @for(product of productApi.products(); track product.id){
 
     <li class="list-group-item d-flex gap-2" routerLink="/products/{{ product.id }}">
@@ -13,7 +29,7 @@
 
     } @empty {
 
-        <p>No products avaliable</p>
+    <p>No products avaliable</p>
 
     }
 
