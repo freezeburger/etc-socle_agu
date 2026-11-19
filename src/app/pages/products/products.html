@@ -1,6 +1,7 @@
 <ul class="list-group">
 
     @for(product of productApi.products(); track product.id){
+
     <li class="list-group-item d-flex gap-2" routerLink="/products/{{ product.id }}">
         <img src="{{ product.thumbnail }}" class="rounded-pill">
         <div class="d-flex flex-column">
@@ -9,5 +10,11 @@
             <em> {{ product.description }} </em>
         </div>
     </li>
+
+    } @empty {
+
+        <p>No products avaliable</p>
+
     }
+
 </ul>

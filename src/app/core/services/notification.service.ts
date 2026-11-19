@@ -22,6 +22,8 @@ export class NotificationService {
             message,
             level
         };
+
         this.notifications.update((current) => [...current, notification]);
+        //this.notifications.set([...this.notifications(), notification]);
     }
 }

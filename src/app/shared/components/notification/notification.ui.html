@@ -1,7 +1,18 @@
 
-<div class="alert"[class]=" 'alert-' + notificationService.lastNotification()?.level || ''">
-    <h2>{{ notificationService.lastNotification()?.title }}</h2>
-    <p>{{ notificationService.lastNotification()?.message }}</p>
-    <em>{{ notificationService.lastNotification()?.createdAt }}</em>
-</div>
+@let notification = notificationService.lastNotification();
+
+@if(notification){
+
+    <div class="alert"[class]=" 'alert-' + notification.level || ''">
+        <h2>{{ notification.title }}</h2>
+        <p>{{ notification.message }}</p>
+        <em>{{ notification.createdAt }}</em>
+    </div>
+
+}
+@else {
+
+    <p>No notifications available.</p>
+    
+}
  
