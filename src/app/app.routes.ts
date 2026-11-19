@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { refGuard } from './core/guards/ref-guard';
 // import { User } from './pages/user/user';
 import { Home } from './pages/home/home';
 import { NotFound } from './pages/not-found/not-found';
@@ -45,6 +46,7 @@ export const routes: Routes = [
     },
     {
         path: 'products/:id',
+        canActivate: [refGuard],
         // component: ProductDetail
         loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail),
         title: 'ETNIC: Product Detail'
