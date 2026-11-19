@@ -46,8 +46,10 @@ export const routes: Routes = [
     },
     {
         path: 'products/:id',
-        //canActivate: [refGuard],
+        // canActivate: [refGuard],
         // component: ProductDetail
+
+        // ProductDetail : set a child router-outlet for nested routes like edit
         loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail),
         title: 'ETNIC: Product Detail',
         children: [
