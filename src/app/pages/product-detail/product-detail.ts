@@ -1,8 +1,9 @@
 import { Component, inject, input } from '@angular/core';
 import { ProductApi } from '../../core/services/product.api';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterOutlet],
   selector: 'app-product-detail',
   styleUrl: './product-detail.scss',
   templateUrl: './product-detail.html',

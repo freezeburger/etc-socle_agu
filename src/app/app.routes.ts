@@ -46,10 +46,20 @@ export const routes: Routes = [
     },
     {
         path: 'products/:id',
-        canActivate: [refGuard],
+        //canActivate: [refGuard],
         // component: ProductDetail
         loadComponent: () => import('./pages/product-detail/product-detail').then(m => m.ProductDetail),
-        title: 'ETNIC: Product Detail'
+        title: 'ETNIC: Product Detail',
+        children: [
+            {
+                path: '',
+                loadComponent: () => import('./shared/components/product-card/product-card.ui').then(m => m.ProductCardUi)
+            },
+            {
+                path: 'edit',
+                loadComponent: () => import('./shared/components/product-form/product-form.ui').then(m => m.ProductFormUi)
+            }
+        ]
     },
     {
         path: 'users/:id',

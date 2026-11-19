@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './product-form.ui.scss',
   templateUrl: './product-form.ui.html',
 })
-export class ProductFormUi {}
+export class ProductFormUi {
+  id = input<string>('')
+}
