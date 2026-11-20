@@ -50,12 +50,12 @@ export interface HumanResponse<T> extends ProcessResponse<T> {
  * @Injectable({
  *   providedIn: 'root
  * })
- * export class ValueService extends CrudAbstract<ValueDTO> {
+ * export class ValueService extends AbstractApi<ValueDTO> {
  *   override endpoint = '/api/products';
  * }
  * ```
  */
-export abstract class CrudAbstract<T extends WithUniqueId> {
+export abstract class AbstractApi<T extends WithUniqueId> {
 
     abstract endpoint: string;
     protected data = signal<T[]>([]);
