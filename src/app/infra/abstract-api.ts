@@ -18,6 +18,7 @@ export interface ProcessResponse<T> {
 
 export enum AcknowledgementStatus {
     PENDING = 'PENDING',
+    IN_PROGRESS = 'IN_PROGRESS',
     SUCCESS = 'SUCCESS',
     ERROR = 'ERROR',
 }
@@ -68,7 +69,7 @@ export abstract class AbstractApi<T extends WithUniqueId> {
 
         return new Promise((resolve) => {
 
-            this.state.set(AcknowledgementStatus.PENDING);
+            this.state.set(AcknowledgementStatus.IN_PROGRESS);
 
             this.http.post<T>(this.endpoint, data).subscribe(
                 data => {
@@ -94,7 +95,7 @@ export abstract class AbstractApi<T extends WithUniqueId> {
         const url = id ? `${this.endpoint}/${id}` : this.endpoint;
 
         return new Promise((resolve) => {
-            this.state.set(AcknowledgementStatus.PENDING);
+            this.state.set(AcknowledgementStatus.IN_PROGRESS);
             if (id) {
                 this.http.get<T>(url).subscribe(
                     data => {
@@ -117,7 +118,7 @@ export abstract class AbstractApi<T extends WithUniqueId> {
 
     protected update(target: T, data: Partial<Omit<T, "id">>): Promise<HumanResponse<T>> {
         return new Promise((resolve) => {
-            this.state.set(AcknowledgementStatus.PENDING);
+            this.state.set(AcknowledgementStatus.IN_PROGRESS);
             this.http.put<T>(`${this.endpoint}/${target.id}`, data).subscribe(
                 data => {
                     this.data.update((current) => current.map(item => item.id === data.id ? data : item));
