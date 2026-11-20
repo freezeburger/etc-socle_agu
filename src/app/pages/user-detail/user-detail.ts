@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { UserApi } from '../../core/services/user.api';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { ButtonUi } from '../../shared/components/button/button.ui';
 
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,ButtonUi, RouterLink],
   selector: 'app-user-detail',
   styleUrl: './user-detail.scss',
   templateUrl: './user-detail.html',

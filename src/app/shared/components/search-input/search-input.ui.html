@@ -1,0 +1,17 @@
+<input type="text" 
+       class="form-control" 
+       placeholder="Search..." 
+       minlength="3"
+       [(ngModel)]="text"
+       #searchInput="ngModel"
+       >
+
+@if( searchInput.invalid && searchInput.dirty ){
+    <p class="text-secondary fs-xs">At least 3 characters required</p>
+}
+
+@if( searchInput.valid && searchInput.dirty && text() ){
+    <div class="btn btn-sm btn-primary m-2" (click)="text.set(''); ">
+        {{ text() }} <code>X</code>
+    </div>
+}

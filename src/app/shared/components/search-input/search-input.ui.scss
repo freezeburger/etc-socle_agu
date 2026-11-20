@@ -1,0 +1,12 @@
+
+input{
+    border-width: 3px;
+}
+
+input.ng-valid {
+    border-color: lightgreen;
+}
+
+input.ng-invalid {
+    border-color: lightcoral;
+}

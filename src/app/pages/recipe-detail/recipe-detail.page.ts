@@ -1,9 +1,10 @@
 import { Component, inject, input } from '@angular/core';
 import { RecipeApi } from '../../core/services/recipe.api';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { ButtonUi } from '../../shared/components/button/button.ui';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, ButtonUi, RouterLink],
   selector: 'app-recipe-detail',
   styleUrl: './recipe-detail.page.scss',
   templateUrl: './recipe-detail.page.html',

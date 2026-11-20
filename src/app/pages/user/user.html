@@ -1,6 +1,11 @@
+
+<app-search-input [(text)]="searchTerm"></app-search-input>
+
+<hr>
+
 <ul class="list-group">
 
-    @for(user of userApi.users(); track user.id){
+    @for(user of filteredUsers(); track user.id){
     <li class="list-group-item d-flex gap-2" [routerLink]="'/users/' + user.id" >
 
         <img src="https://ui-avatars.com/api/?name={{ user.firstName }}+{{ user.lastName }}" class="rounded-pill">

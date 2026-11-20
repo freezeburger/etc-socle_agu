@@ -1,10 +1,7 @@
-<p>user-detail works!</p>
-
-<code>{{ id() }}</code>
+<app-button routerLink=".">View</app-button>
+<app-button routerLink="edit">Edit</app-button>
 
 <hr>
-<code>{{ recipeApi.currentRecipe()?.name }}</code>
-<code>{{ recipeApi.currentRecipe()?.prepTimeMinutes }}</code> 
-<code>{{ recipeApi.currentRecipe()?.instructions.join(', ') }}</code>
+
 
 <router-outlet></router-outlet>
