@@ -13,7 +13,7 @@ export class RecipeApi {
 
         const response = await fetch(RECIPE_ENDPOINT);
         const data: RecipeResponse = await response.json();
-        this.recipes.set(data.recipes);
+        this.recipes.set(data);
 
          this.notificationService.notify('Update', 'Recipes loaded successfully' , 'success');
     }

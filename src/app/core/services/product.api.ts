@@ -18,7 +18,7 @@ export class ProductApi {
 
         const response = await fetch(PRODUCT_ENDPOINT);
         const data: ProductResponse = await response.json();
-        this.products.set(data.products);
+        this.products.set(data);
         this.notificationService.notify('Update', 'Products loaded successfully' , 'success');
         
         this.busy.set(false);

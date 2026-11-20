@@ -3,4 +3,11 @@
 <app-button routerLink="edit">Edit</app-button>
 
 <hr>
-<router-outlet></router-outlet>
+
+@defer{
+
+<router-outlet 
+    [routerOutletData]="productApi.currentProduct()">
+</router-outlet>
+
+}

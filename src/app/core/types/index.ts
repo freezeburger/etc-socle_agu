@@ -1,9 +1,10 @@
 
-export const PRODUCT_ENDPOINT = 'http://dummyjson.com/products';
+export const PRODUCT_ENDPOINT = 'http://localhost:5050/products';
 
-export const USER_ENDPOINT = 'http://dummyjson.com/users';
+export const USER_ENDPOINT = 'http://localhost:5050/users';
 
-export const RECIPE_ENDPOINT = 'http://dummyjson.com/recipes';
+export const RECIPE_ENDPOINT = 'http://localhost:5050/recipes';
+
 
 export type ProductDTO = {
     id: number;
@@ -13,9 +14,7 @@ export type ProductDTO = {
     thumbnail: string;
 };
 
-export type ProductResponse = {
-    products: ProductDTO[];
-};
+export type ProductResponse = ProductDTO[];
 
 export type UserDTO = {
     id: number;
@@ -24,9 +23,8 @@ export type UserDTO = {
     email: string;
 };
 
-export type UserResponse = {
-    users: UserDTO[];
-};
+export type UserResponse =  UserDTO[];
+
 
 export interface RecipeDTO {
   id: number
@@ -47,9 +45,7 @@ export interface RecipeDTO {
   mealType: string[]
 }
 
-export type RecipeResponse = {
-    recipes: RecipeDTO[];
-};
+export type RecipeResponse =  RecipeDTO[];
 
 /**
  *  - Définition du type de données "Notification"

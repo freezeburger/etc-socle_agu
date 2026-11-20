@@ -1,1 +1,19 @@
-<p>card works!</p>
+<app-card-ui>
+
+    <footer>
+        Footer content here
+    </footer>
+
+    <main class="d-flex">
+        <img src="{{product().thumbnail}}" class="card-image">
+        <aside>
+            <code>{{product().price}}</code>
+            <p>{{product().description}}</p>
+        </aside>
+    </main>
+
+    <header>
+        <h3>{{product().title}}</h3>
+    </header>
+
+</app-card-ui>

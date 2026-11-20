@@ -1,6 +1,7 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { USER_ENDPOINT, UserDTO, UserResponse } from '../types';
 import { NotificationService } from './notification.service';
+
 // @Service()
 @Injectable({ providedIn: 'root' })
 export class UserApi {
@@ -17,7 +18,7 @@ export class UserApi {
 
         const response = await fetch(USER_ENDPOINT);
         const data: UserResponse = await response.json();
-        this.users.set(data.users);
+        this.users.set(data);
 
          this.notificationService.notify('Update', 'Users loaded successfully' , 'success');
     }
