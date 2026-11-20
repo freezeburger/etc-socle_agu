@@ -2,7 +2,7 @@ import { inject, signal } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 /**
- * A type representing a unique identifier, which can be either a string or a number.
+ * A type representing a unique identifier, which can be either a string.
  * For items within the same collection, the type should be consistent.
  */
 export type UniqueId = string;
@@ -13,7 +13,7 @@ export interface WithUniqueId {
 
 export interface ProcessResponse<T> {
     data: T;
-    error?: Error;
+    error?: string;
 }
 
 export enum AcknowledgementStatus {
@@ -39,12 +39,11 @@ export interface HumanResponse<T> extends ProcessResponse<T> {
  *
  * T must extend WithUniqueId to ensure the presence of an 'id' field
  *
- * You must set the 'endpoint' property in the subclass constructor
  *
  * @example
  * ```typescript
  * import { Injectable } from '@angular/core';
- * import { CrudAbstract } from 'path-to-crud.abstract';
+ * import { AbstractApi } from 'path-to/abstract-api';
  * import { ProductDTO } from 'path-to-product.dto';
  *
  * @Injectable({
@@ -60,7 +59,7 @@ export abstract class AbstractApi<T extends WithUniqueId> {
     abstract endpoint: string;
     protected data = signal<T[]>([]);
 
-    state: AcknowledgementStatus = AcknowledgementStatus.PENDING;
+    state = signal(AcknowledgementStatus.PENDING);
 
     protected http = inject(HttpClient);
 
@@ -68,9 +67,13 @@ export abstract class AbstractApi<T extends WithUniqueId> {
     protected create(data: Omit<T, "id">): Promise<HumanResponse<T>> {
 
         return new Promise((resolve) => {
+
+            this.state.set(AcknowledgementStatus.PENDING);
+
             this.http.post<T>(this.endpoint, data).subscribe(
                 data => {
                     this.data.update((current) => [data, ...current]);
+                    this.state.set(AcknowledgementStatus.SUCCESS);
                     resolve({ message: "Created", data: data as T });
                 }
             );
@@ -91,10 +94,12 @@ export abstract class AbstractApi<T extends WithUniqueId> {
         const url = id ? `${this.endpoint}/${id}` : this.endpoint;
 
         return new Promise((resolve) => {
+            this.state.set(AcknowledgementStatus.PENDING);
             if (id) {
                 this.http.get<T>(url).subscribe(
                     data => {
                         this.data.update((current) => current.map(item => item.id === data.id ? data : item));
+                        this.state.set(AcknowledgementStatus.SUCCESS);
                         resolve({ message: "Retrieved", data: data as T });
                     }
                 );
@@ -102,6 +107,7 @@ export abstract class AbstractApi<T extends WithUniqueId> {
                 this.http.get<T[]>(url).subscribe(
                     data => {
                         this.data.set(data);
+                        this.state.set(AcknowledgementStatus.SUCCESS);
                         resolve({ message: "Retrieved", data: data as T[] });
                     }
                 );
@@ -111,9 +117,11 @@ export abstract class AbstractApi<T extends WithUniqueId> {
 
     protected update(target: T, data: Partial<Omit<T, "id">>): Promise<HumanResponse<T>> {
         return new Promise((resolve) => {
+            this.state.set(AcknowledgementStatus.PENDING);
             this.http.put<T>(`${this.endpoint}/${target.id}`, data).subscribe(
                 data => {
                     this.data.update((current) => current.map(item => item.id === data.id ? data : item));
+                    this.state.set(AcknowledgementStatus.SUCCESS);
                     resolve({ message: "Updated", data: data as T });
                 }
             );
@@ -122,9 +130,11 @@ export abstract class AbstractApi<T extends WithUniqueId> {
 
     protected delete(target: T): Promise<HumanResponse<T>> {
         return new Promise((resolve) => {
+            this.state.set(AcknowledgementStatus.PENDING);
             this.http.delete<T>(`${this.endpoint}/${target.id}`).subscribe(
                 () => {
                     this.data.update((current) => current.filter(item => item.id !== target.id));
+                    this.state.set(AcknowledgementStatus.SUCCESS);
                     resolve({ message: "Deleted", data: target });
                 }
             );
