@@ -1,13 +1,10 @@
-
 <app-button routerLink=".">View</app-button>
 <app-button routerLink="edit">Edit</app-button>
 
 <hr>
 
-@defer{
+@let product = productApi.currentProduct();
 
-<router-outlet 
-    [routerOutletData]="productApi.currentProduct()">
-</router-outlet>
-
+@if(product){
+    <router-outlet [routerOutletData]="product" />
 }
