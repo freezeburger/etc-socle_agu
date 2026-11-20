@@ -15,8 +15,17 @@ export class ProductDetail {
 
   productApi = inject(ProductApi);
 
+  data = {
+    product: this.productApi.currentProduct,
+    deleteProduct: this.deleteProduct.bind(this)
+  }
+
   ngOnInit() {
     this.productApi.loadProduct(Number(this.id()));
+  }
+
+  deleteProduct() {
+    this.productApi.deleteProduct(this.productApi.currentProduct()!);
   }
 
 }

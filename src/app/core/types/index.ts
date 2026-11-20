@@ -7,7 +7,7 @@ export const RECIPE_ENDPOINT = 'http://localhost:5050/recipes';
 
 
 export type ProductDTO = {
-    id: number;
+    id: string;
     title: string;
     price: number;
     description: string;

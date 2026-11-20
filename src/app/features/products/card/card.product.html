@@ -1,19 +1,19 @@
 <app-card-ui>
 
     <footer>
-        Footer content here
+        <app-button level="danger" (click)="data().deleteProduct()"> Des chiffes & Delete </app-button>
     </footer>
 
     <main class="d-flex">
-        <img src="{{product().thumbnail}}" class="card-image">
+        <img src="{{data().product().thumbnail}}" class="card-image">
         <aside>
-            <code>{{product().price}}</code>
-            <p>{{product().description}}</p>
+            <code>{{data().product().price}}</code>
+            <p>{{data().product().description}}</p>
         </aside>
     </main>
 
     <header>
-        <h3>{{product().title}}</h3>
+        <h3>{{data().product().title}}</h3>
     </header>
 
 </app-card-ui>
